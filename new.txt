@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <button class="button is-link" hx-put="/search" hx-target="#response" hx-vals='json:' hx-trigger="click">
+            <button class="button is-link" hx-put="/search" hx-target="#response">
                 Search
             </button>
             <div id="response"></div>
@@ -72,11 +72,16 @@
             });
             return JSON.stringify(data);
         }
-        document.querySelector('button').setAttribute('hx-vals', 'json:' + collectData());
+
+        const searchButton = document.querySelector('button');
+        searchButton.addEventListener('click', function() {
+            searchButton.setAttribute('hx-vals', 'json:' + collectData());
+        });
     </script>
 </body>
 
 </html>
+
 
 
 from flask import Flask, request
