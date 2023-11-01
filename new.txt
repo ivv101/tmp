@@ -13,50 +13,71 @@
             <div class="field is-horizontal">
                 <div class="field-body">
                     <div class="field">
+                        <label class="label">First Name</label>
                         <div class="control">
-                            <input class="input" type="text" name="first_name" placeholder="First Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="first_name" placeholder="First Name">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">Middle Name</label>
                         <div class="control">
-                            <input class="input" type="text" name="middle_name" placeholder="Middle Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="middle_name" placeholder="Middle Name">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">Last Name</label>
                         <div class="control">
-                            <input class="input" type="text" name="last_name" placeholder="Last Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="last_name" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">License State</label>
                         <div class="control">
-                            <input class="input" type="text" name="license_state" placeholder="License State" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="license_state" placeholder="License State">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">License Number</label>
                         <div class="control">
-                            <input class="input" type="text" name="license_number" placeholder="License Number" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="license_number" placeholder="License Number">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">Law Firm Name</label>
                         <div class="control">
-                            <input class="input" type="text" name="law_firm_name" placeholder="Law Firm Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="law_firm_name" placeholder="Law Firm Name">
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">DOAN</label>
                         <div class="control">
-                            <input class="input" type="text" name="doan" placeholder="DOAN" hx-put="/update" hx-target="#response" hx-trigger="change">
+                            <input class="input" type="text" name="doan" placeholder="DOAN">
                         </div>
                     </div>
                 </div>
             </div>
+            <button class="button is-link" hx-put="/search" hx-target="#response" hx-vals='json:' hx-trigger="click">
+                Search
+            </button>
             <div id="response"></div>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.5.0/dist/htmx.min.js"></script>
+    <script>
+        function collectData() {
+            const data = {};
+            document.querySelectorAll('input').forEach(input => {
+                data[input.name] = input.value;
+            });
+            return JSON.stringify(data);
+        }
+        document.querySelector('button').setAttribute('hx-vals', 'json:' + collectData());
+    </script>
 </body>
 
 </html>
+
 
 from flask import Flask, request
 
@@ -64,7 +85,7 @@ app = Flask(__name__)
 
 @app.route('/update', methods=['PUT'])
 def update():
-    data = request.form
+    data = request.json
     print(data)
     return '', 204
 
