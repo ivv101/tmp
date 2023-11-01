@@ -10,74 +10,63 @@
 <body>
     <section class="section">
         <div class="container">
-            <div class="field is-horizontal">
-                <div class="field-body">
-                    <div class="field">
-                        <label class="label">First Name</label>
-                        <div class="control">
-                            <input class="input" type="text" name="first_name" placeholder="First Name">
+            <form hx-put="/search" hx-target="#response" hx-headers='{"Content-Type": "application/json"}' hx-vals='json:{"data": [{"name": "first_name", "value": FIRST_NAME}, {"name": "middle_name", "value": MIDDLE_NAME}, {"name": "last_name", "value": LAST_NAME}, {"name": "license_state", "value": LICENSE_STATE}, {"name": "license_number", "value": LICENSE_NUMBER}, {"name": "law_firm_name", "value": LAW_FIRM_NAME}, {"name": "doan", "value": DOAN}]}'>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">First Name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="first_name" placeholder="First Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Middle Name</label>
-                        <div class="control">
-                            <input class="input" type="text" name="middle_name" placeholder="Middle Name">
+                        <div class="field">
+                            <label class="label">Middle Name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="middle_name" placeholder="Middle Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Last Name</label>
-                        <div class="control">
-                            <input class="input" type="text" name="last_name" placeholder="Last Name">
+                        <div class="field">
+                            <label class="label">Last Name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="last_name" placeholder="Last Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">License State</label>
-                        <div class="control">
-                            <input class="input" type="text" name="license_state" placeholder="License State">
+                        <div class="field">
+                            <label class="label">License State</label>
+                            <div class="control">
+                                <input class="input" type="text" name="license_state" placeholder="License State">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">License Number</label>
-                        <div class="control">
-                            <input class="input" type="text" name="license_number" placeholder="License Number">
+                        <div class="field">
+                            <label class="label">License Number</label>
+                            <div class="control">
+                                <input class="input" type="text" name="license_number" placeholder="License Number">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Law Firm Name</label>
-                        <div class="control">
-                            <input class="input" type="text" name="law_firm_name" placeholder="Law Firm Name">
+                        <div class="field">
+                            <label class="label">Law Firm Name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="law_firm_name" placeholder="Law Firm Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">DOAN</label>
-                        <div class="control">
-                            <input class="input" type="text" name="doan" placeholder="DOAN">
+                        <div class="field">
+                            <label class="label">DOAN</label>
+                            <div class="control">
+                                <input class="input" type="text" name="doan" placeholder="DOAN">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <button class="button is-link" hx-put="/search" hx-target="#response" hx-headers='{"Content-Type": "application/json"}'>
-                Search
-            </button>
+                <button class="button is-link" type="submit">
+                    Search
+                </button>
+            </form>
             <div id="response"></div>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.5.0/dist/htmx.min.js"></script>
-    <script>
-        function collectData() {
-            const data = {};
-            document.querySelectorAll('input').forEach(input => {
-                data[input.name] = input.value;
-            });
-            return JSON.stringify(data);
-        }
-
-        const searchButton = document.querySelector('button');
-        searchButton.addEventListener('click', function() {
-            searchButton.setAttribute('hx-vals', 'json:' + collectData());
-        });
-    </script>
 </body>
 
 </html>
@@ -91,7 +80,7 @@ app = Flask(__name__)
 
 @app.route('/update', methods=['PUT'])
 def update():
-    data = request.json
+    data = request.get.json
     print(data)
     return '', 204
 
