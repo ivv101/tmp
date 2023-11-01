@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Form with htmx</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="first_name" placeholder="First Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="middle_name" placeholder="Middle Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="last_name" placeholder="Last Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="license_state" placeholder="License State" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="license_number" placeholder="License Number" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="law_firm_name" placeholder="Law Firm Name" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="doan" placeholder="DOAN" hx-put="/update" hx-target="#response" hx-trigger="change">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="response"></div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.5.0/dist/htmx.min.js"></script>
+</body>
+
+</html>
+
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/update', methods=['PUT'])
+def update():
+    data = request.form
+    print(data)
+    return '', 204
+
+if __name__ == '__main__':
+    app.run(debug=True)
