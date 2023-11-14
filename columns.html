@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Table Columns</title>
+    <style>
+        .scrollable-column {
+            height: 100px; /* Adjust as needed */
+            overflow-y: auto;
+            float: left;
+            margin-right: 10px; /* Spacing between columns */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 0px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="scrollable-column">
+        <table>
+            <tr><th>Column 1</th></tr>
+            <!-- Sample rows for column 1 -->
+            <tr><td>Row 1</td></tr>
+            <tr><td>Row 2</td></tr>
+            <tr><td>Row 3</td></tr>
+            <tr><td>Row 4</td></tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+    <div class="scrollable-column">
+        <table>
+            <tr><th>Column 2</th></tr>
+            <!-- Sample rows for column 2 -->
+            <tr><td>Row 1</td></tr>
+            <tr><td>Row 2</td></tr>
+            <tr><td>Row 3</td></tr>
+            <tr><td>Row 4</td></tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+    <div class="scrollable-column">
+        <table>
+            <tr><th>Column 3</th></tr>
+            <!-- Sample rows for column 3 -->
+            <tr><td>Row 1</td></tr>
+            <tr><td>Row 2</td></tr>
+            <tr><td>Row 3</td></tr>
+            <tr><td>Row 4</td></tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // jQuery code if needed
+    </script>
+</body>
+</html>
